@@ -1,26 +1,29 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Webhook Signature Tester (Standard Webhooks / Polar)</title>
-<style>body{font-family:system-ui;max-width:720px;margin:40px auto;padding:0 16px}textarea,input{width:100%;font-family:monospace;margin:4px 0 12px}code{word-break:break-all}</style></head>
-<body><h1>Webhook signature tester</h1><p>Runs locally in your browser. Nothing is uploaded.</p>
-<label>Secret (the <code>whsec_…</code> value from the Polar dashboard, as-is)</label><input id="sec">
-<label>webhook-id</label><input id="wid" value="msg_test">
-<label>webhook-timestamp (unix seconds)</label><input id="ts">
-<label>Raw body</label><textarea id="body" rows="6">{"type":"order.paid","data":{"id":"ord_123"}}</textarea>
-<label>Received webhook-signature (optional)</label><input id="got" placeholder="v1,...">
-<button id="go">Compute</button><p>Expected: <code id="exp"></code></p><p id="res"></p>
-<p><a href="#starter-kit">Skip the wiring → Polar + Next.js Starter Kit</a></p>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Webhook Signature Tester (Standard Webhooks / Polar) | Fork &amp; Ship</title><meta name="description" content="Free, local tool to verify Polar webhook signatures."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap">
+<main class="narrow">
+<header class="hero sm"><span class="tag">Free tool · nothing leaves your browser</span><h1>Webhook signature tester</h1></header>
+<div class="card intro"><h2>What is this?</h2><p>When someone pays, Polar sends your app a <a href="/#g-webhook">webhook</a>: a message signed with a secret. Your app must check the signature so nobody can fake a payment. Paste a webhook here to see the signature you should expect and whether it matches. It runs locally and nothing is uploaded. For safety, use a sandbox or test secret.</p></div>
+<section><div class="card">
+<label for="sec">Secret (the <code>whsec_…</code> value from Polar, pasted as-is)</label><input id="sec" class="mono" autocomplete="off" spellcheck="false">
+<div class="fields"><div><label for="wid">webhook-id header</label><input id="wid" class="mono" value="msg_test"></div>
+<div><label for="ts">webhook-timestamp header (unix seconds)</label><input id="ts" class="mono"></div></div>
+<label for="body">Raw request body (exactly as received)</label><textarea id="body" rows="6">{"type":"order.paid","data":{"id":"ord_123"}}</textarea>
+<label for="got">Received webhook-signature header (optional)</label><input id="got" class="mono" placeholder="v1,...">
+<button class="btn" id="go" type="button">Compute signature</button>
+<div aria-live="polite"><p class="small" style="margin-top:16px">Expected signatures:</p><div class="out mono" id="exp">—</div><p id="res"></p></div>
+</div></section>
+<section><div class="card"><h3>Skip the wiring</h3><p>The Fork &amp; Ship Starter already verifies Polar webhooks, with both schemes tested.</p><a class="btn" href="/#kit">Get the kit (coming soon)</a><a class="btn ghost" href="/#glossary">Glossary</a></div></section>
+</main>
 <script>
 const $=id=>document.getElementById(id);$("ts").value=Math.floor(Date.now()/1000);
 const b64=buf=>btoa(String.fromCharCode(...new Uint8Array(buf)));
 const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
-async function sign(keyBytes,msg){const k=await crypto.subtle.importKey("raw",keyBytes,{name:"HMAC",hash:"SHA-256"},false,["sign"]);return "v1,"+b64(await crypto.subtle.sign("HMAC",k,new TextEncoder().encode(msg)));}
-// Polar (docs, Oct 2026): secrets created on/after 2026-09-08 00:00 UTC use Standard Webhooks
-// (key = base64-decoded part after whsec_); older secrets use Polar HMAC (key = UTF-8 bytes of the full whsec_ string).
-$("go").onclick=async()=>{
- const s=$("sec").value.trim(), msg=`${$("wid").value}.${$("ts").value}.${$("body").value}`;
- let std=null; try{std=await sign(unb64(s.replace(/^whsec_/,"")),msg);}catch(e){}
- const legacy=await sign(new TextEncoder().encode(s),msg);
- $("exp").innerHTML=`Standard Webhooks (new secrets): ${std??"n/a: secret isn't valid base64"}<br>Polar HMAC (pre-2026-09-08 secrets): ${legacy}`;
- const got=$("got").value.trim().split(" ");
- if(got[0]){const m=got.includes(std)?"✅ Matches Standard Webhooks scheme":got.includes(legacy)?"✅ Matches legacy Polar HMAC scheme":"❌ No match: check the secret, exact raw body (no re-serialization), id, and timestamp";$("res").textContent=m;}
-};
-</script></body></html>
+async function sign(k,msg){const key=await crypto.subtle.importKey("raw",k,{name:"HMAC",hash:"SHA-256"},false,["sign"]);return "v1,"+b64(await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(msg)));}
+// Polar: secrets created on/after 2026-09-08 use Standard Webhooks (key = base64-decoded part after whsec_); older ones use Polar HMAC (key = UTF-8 of full string).
+$("go").onclick=async()=>{const s=$("sec").value.trim(),msg=`${$("wid").value}.${$("ts").value}.${$("body").value}`;
+let std=null;try{std=await sign(unb64(s.replace(/^whsec_/,"")),msg)}catch(e){}
+const legacy=await sign(new TextEncoder().encode(s),msg);
+$("exp").textContent=`Standard Webhooks (new secrets): ${std??"n/a (secret isn't valid base64)"}\nPolar HMAC (pre-2026-09-08 secrets): ${legacy}`;$("exp").style.whiteSpace="pre-wrap";
+const got=$("got").value.trim().split(" ").filter(Boolean);
+$("res").textContent=got.length?(got.includes(std)?"✅ Matches the Standard Webhooks scheme":got.includes(legacy)?"✅ Matches the legacy Polar HMAC scheme":"❌ No match. Check the secret, the exact raw body (not re-serialized), the id and the timestamp."):"";};
+</script>
+</div></body></html>

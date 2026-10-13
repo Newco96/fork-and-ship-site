@@ -1,49 +1,35 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Fork &amp; Ship — starter kits that take money on day one</title>
-<meta name="description" content="Production-ready starter kits and templates for indie makers. Sold via Polar (merchant of record).">
-<meta name="robots" content="noindex">
-<style>
-:root{--bg:#0b0d12;--fg:#e9ecf2;--mut:#9aa3b2;--acc:#7c9cff;--card:rgba(18,21,30,.82);--line:rgba(255,255,255,.08)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--fg);background:var(--bg)}
-.bg{position:fixed;inset:0;z-index:-1;background:
-radial-gradient(60vmax 60vmax at 15% 10%,rgba(124,156,255,.35),transparent 60%),
-radial-gradient(50vmax 50vmax at 90% 80%,rgba(0,214,170,.22),transparent 60%),
-linear-gradient(transparent 0 calc(100% - 1px),var(--line) 0) 0 0/100% 48px,
-linear-gradient(90deg,transparent 0 calc(100% - 1px),var(--line) 0) 0 0/48px 100%,var(--bg);
-transform:translateZ(0);will-change:transform}
-/* position:fixed layer (not background-attachment:fixed) works on iOS. Reduced motion: let it scroll with content */
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bg{position:absolute;height:100%;min-height:100vh}body{position:relative}}
-a{color:var(--acc)}a:focus-visible,.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}nav b{letter-spacing:.02em}nav a{color:var(--mut);text-decoration:none;margin-left:18px}
-.hero{padding:16vh 0 12vh}h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;margin:0 0 16px;letter-spacing:-.02em}
-.lead{font-size:1.2rem;color:var(--mut);max-width:620px}
-.btn{display:inline-block;padding:13px 22px;border-radius:10px;background:var(--acc);color:#0b0d12;font-weight:600;text-decoration:none;margin:8px 10px 0 0}
-.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
-section{padding:56px 0}h2{font-size:1.8rem;margin:0 0 20px}
-.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.card h3{margin:0 0 8px}.card p{color:var(--mut);margin:0 0 12px}.price{font-size:2rem;font-weight:700}
-.mor{font-size:.9rem;color:var(--mut)}footer{padding:40px 0;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line)}
-.tag{display:inline-block;font-size:.75rem;padding:2px 8px;border:1px solid var(--line);border-radius:99px;color:var(--mut)}
-</style></head><body><div class="bg" aria-hidden="true"></div>
-<div class="wrap"><nav aria-label="Main"><b>Fork &amp; Ship</b><div><a href="#kit">Kit</a><a href="#tools">Free tools</a></div></nav>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fork &amp; Ship: starter kits that take money on day one</title><meta name="description" content="Production-ready starter kits and free tools for indie makers. Sold via Polar Software, Inc. (merchant of record)."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap"><nav aria-label="Main"><a class="brand" href="/">Fork &amp; Ship</a><div class="links"><a href="/#kit">Kit</a><a href="/#tools">Free tools</a><a href="/#how">How it works</a><a href="/#glossary">Glossary</a></div></nav>
 <main>
-<header class="hero"><h1>Fork it. Ship it.<br>Get paid on day one.</h1>
-<p class="lead">Readable, production-ready starter kits for indie makers. Next.js + Polar checkout, signed webhooks, and entitlements, deployable to Vercel in minutes.</p>
+<header class="hero"><span class="tag">Starter kits · free tools · plain-English guides</span><h1>Fork it. Ship it.<br>Get paid on day one.</h1>
+<p class="lead">Readable, production-ready starter kits for indie makers: a Next.js app with Polar checkout, signed webhooks and entitlements, deployable to Vercel in minutes.</p>
 <a class="btn" href="#kit">See the flagship kit</a><a class="btn ghost" href="#tools">Try the free tools</a></header>
-<section id="kit"><h2>Flagship kit</h2><div class="grid">
+<section aria-labelledby="what"><div class="card intro"><h2 id="what">What is this?</h2><p>Fork &amp; Ship makes starting points ("starter kits") for people who want to sell software online. Instead of spending weeks wiring up payments, you copy (fork) a working project, change it, and launch. New to selling software? Start with <a href="#how">how it works</a> and the <a href="#glossary">glossary</a>.</p></div></section>
+<section id="kit" aria-labelledby="kith"><h2 id="kith">Flagship kit</h2><div class="grid">
 <div class="card"><span class="tag">Next.js 16 · Polar · Vercel</span><h3>Fork &amp; Ship Starter</h3>
-<p>Merchant-of-record checkout, Standard Webhooks verification, Redis/Postgres entitlement store, and a tested end-to-end flow. No lock-in, no runtime LLM costs.</p>
-<div class="price">$39 <small class="mor">one-time</small></div>
-<span class="btn" id="buy" aria-disabled="true" style="opacity:.6;cursor:default">Coming soon</span><a class="btn ghost" href="#details">Kit details</a>
-<p class="mor">No checkout yet: launch announcement coming soon, no email required.</p><p class="mor">When it launches, checkout will be handled by <strong>Polar Software, Inc.</strong>, our merchant of record and reseller, which will process payment, tax/VAT, invoices, and refunds.</p></div>
-<div class="card" id="details"><h3>What you get</h3><p>• Full source repo access<br>• Checkout + webhook + success routes<br>• Entitlement storage auto-detection<br>• Deploy guide and test checklist<br>• MIT-style license for your products</p></div>
+<p>A complete app that can take payments: <span class="tip" title="The page where a customer pays.">checkout</span>, <abbr title="Messages Polar sends your app when something happens, like an order being paid.">webhook</abbr> verification, an <abbr title="A record of what each customer has paid for and can access.">entitlement</abbr> store (Redis or Postgres), and a tested end-to-end flow. No lock-in and no AI API costs while it runs.</p>
+<div class="price">$39 <small class="small">one-time</small></div>
+<span class="btn" aria-disabled="true">Coming soon</span><a class="btn ghost" href="#details">Kit details</a>
+<p class="small">No checkout yet. Launch is coming soon (no email required).</p>
+<p class="small">When it launches, checkout will be handled by <strong>Polar Software, Inc.</strong>, our <abbr title="Merchant of record: the company that legally sells to the customer and handles tax, VAT, invoices and refunds.">merchant of record</abbr> and reseller.</p></div>
+<div class="card" id="details"><h3>Kit details: what you get</h3><p>• Full source code<br>• Checkout, webhook and success pages<br>• Purchase storage that sets itself up<br>• Step-by-step deploy guide and test checklist<br>• Commercial license for your own products</p><p class="small">Works with Polar's free sandbox, so you can test payments without real money.</p></div>
 </div></section>
-<section id="tools"><h2>Free tools</h2><p class="lead">No sign-up, no analytics, runs entirely in your browser.</p><div class="grid">
-<div class="card"><h3>MoR Fee Calculator</h3><p>See what you keep after merchant-of-record fees, payout costs, and tax reserve.</p><a class="btn ghost" href="tools/mor-fee-calculator/">Open calculator</a></div>
-<div class="card"><h3>Polar Webhook Tester</h3><p>Check webhook payloads and signatures locally before going live.</p><a class="btn ghost" href="tools/polar-webhook-tester/">Open tester</a></div>
-</div></section></main>
-<footer><p>Fork &amp; Ship by Bradley Steele Blue. Products are sold by our reseller <strong>Polar Software, Inc.</strong> (merchant of record), which handles payments, sales tax/VAT, and billing support. Free tools are MIT-licensed. No tracking or cookies on this site.</p></footer></div>
-</body></html>
+<section id="tools" aria-labelledby="toolsh"><h2 id="toolsh">Free tools</h2><p class="lead">No sign-up and no analytics. Everything runs in your browser.</p><div class="grid">
+<div class="card"><h3>MoR Fee Calculator</h3><p>See how much of each sale you keep on Polar, Lemon Squeezy and Gumroad.</p><a class="btn ghost" href="/tools/mor-fee-calculator/">Open calculator</a></div>
+<div class="card"><h3>Webhook Signature Tester</h3><p>Check that a Polar webhook signature is valid before you go live.</p><a class="btn ghost" href="/tools/polar-webhook-tester/">Open tester</a></div>
+</div></section>
+<section id="how" aria-labelledby="howh"><h2 id="howh">How selling software works</h2><div class="card"><ol class="steps">
+<li><p><strong>You build or fork a product.</strong> It could be an app, a template or a download.</p></li>
+<li><p><strong>A <abbr title="Merchant of record: the company that legally sells to the customer and handles tax, VAT, invoices and refunds.">merchant of record</abbr> sells it for you.</strong> Polar Software, Inc. takes the payment, charges the right sales tax or VAT in each country, sends the receipt and handles refunds. You don't need to register for tax in dozens of countries.</p></li>
+<li><p><strong>Polar tells your app with a webhook.</strong> Your app checks the signature so nobody can fake a payment.</p></li>
+<li><p><strong>Your app grants an entitlement.</strong> The customer gets access, a license or a download.</p></li>
+<li><p><strong>You get paid out.</strong> Polar sends you the money minus its fees. The <a href="/tools/mor-fee-calculator/">fee calculator</a> shows how much you keep.</p></li>
+</ol></div></section>
+<section id="glossary" aria-labelledby="gh"><h2 id="gh">Glossary</h2><div class="card"><dl class="gloss">
+<dt id="g-mor">MoR (merchant of record)</dt><dd>The company legally selling to the customer. It collects payment, handles tax/VAT, invoices, chargebacks and refunds. For Fork &amp; Ship that's Polar Software, Inc.</dd>
+<dt id="g-polar">Polar</dt><dd>A merchant-of-record platform for developers (polar.sh). It handles checkout, subscriptions, license keys and file downloads. It has a free sandbox for testing.</dd>
+<dt id="g-webhook">Webhook</dt><dd>An automatic HTTP message one service sends to another when something happens (e.g. "order paid"). It's signed with a secret so your app can check it's real.</dd>
+<dt id="g-ent">Entitlement</dt><dd>What a customer is allowed to access after paying, such as repo access, a download or a feature. Your app stores it so it remembers who paid.</dd>
+<dt id="g-sandbox">Sandbox</dt><dd>A test mode with fake money. Sandbox orders are never real revenue.</dd>
+</dl></div></section>
+</main>
+<footer><p>Fork &amp; Ship by Bradley Steele Blue. Products are sold by our reseller <strong>Polar Software, Inc.</strong> (merchant of record), which handles payments, sales tax/VAT and billing support. Free tools are MIT-licensed. No tracking, analytics or cookies. <a href="/#glossary">Glossary</a> · <a href="/">Home</a></p></footer></div></body></html>
