@@ -1,4 +1,4 @@
-# Free tool 1: Merchant-of-Record Fee Calculator
+# Compare payment platform fees
 
 **Positioning:** "What will I actually take home?" Compare Polar, Lemon Squeezy, and Gumroad net payout per sale and per month. It runs entirely client-side as a single HTML file (no backend, no API cost).
 **Audience:** indie devs choosing a payment platform. This is the same audience as Products 1 and 3.

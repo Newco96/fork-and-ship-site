@@ -43,3 +43,19 @@ table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid var(--li
 .tablewrap{overflow-x:auto}.best{color:var(--acc2);font-weight:600}
 .out{word-break:break-all;background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}
 footer{padding:36px 0;color:var(--mut);font-size:.9rem;border-top:1px solid var(--line);margin-top:24px}
+/* v3 additions */
+.shot{margin:0}.shot img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);background:#fff;display:block}
+.shot figcaption{font-size:.88rem;color:var(--mut);margin-top:8px}
+.cols2{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.checks{list-style:none;padding:0;margin:0}.checks li{padding-left:26px;position:relative;margin:6px 0}
+.checks li::before{content:"✓";position:absolute;left:0;color:var(--acc2);font-weight:700}
+.nots li::before{content:"✕";color:#ff9b9b}
+.status{display:inline-block;padding:6px 12px;border-radius:99px;background:rgba(255,200,90,.12);color:#ffd27a;border:1px solid rgba(255,200,90,.35);font-size:.9rem;font-weight:600}
+pre.code{background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:10px;padding:14px;overflow-x:auto;font-size:.82rem;color:#d7dcff;margin:8px 0}
+details{margin:8px 0}summary{cursor:pointer;font-weight:600}
+.label-ill{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#ffd27a}
+table.facts td,table.facts th{text-align:left;vertical-align:top}table.facts th{width:32%;color:var(--fg)}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 12px;border-radius:8px;z-index:10}.skip:focus{left:8px}
+.quick{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:22px 0 6px}
+.quick div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}.quick b{display:block;color:var(--fg);margin-bottom:4px}.quick span{color:var(--mut);font-size:.95rem}
+@media (max-width:600px){table.facts,table.facts tbody,table.facts tr,table.facts th,table.facts td{display:block;width:100%}table.facts th{border-bottom:0;padding-bottom:0}nav .links a{margin:0 12px 0 0}}

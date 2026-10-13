@@ -1,35 +1,125 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fork &amp; Ship: starter kits that take money on day one</title><meta name="description" content="Production-ready starter kits and free tools for indie makers. Sold via Polar Software, Inc. (merchant of record)."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap"><nav aria-label="Main"><a class="brand" href="/">Fork &amp; Ship</a><div class="links"><a href="/#kit">Kit</a><a href="/#tools">Free tools</a><a href="/#how">How it works</a><a href="/#glossary">Glossary</a></div></nav>
-<main>
-<header class="hero"><span class="tag">Starter kits · free tools · plain-English guides</span><h1>Fork it. Ship it.<br>Get paid on day one.</h1>
-<p class="lead">Readable, production-ready starter kits for indie makers: a Next.js app with Polar checkout, signed webhooks and entitlements, deployable to Vercel in minutes.</p>
-<a class="btn" href="#kit">See the flagship kit</a><a class="btn ghost" href="#tools">Try the free tools</a></header>
-<section aria-labelledby="what"><div class="card intro"><h2 id="what">What is this?</h2><p>Fork &amp; Ship makes starting points ("starter kits") for people who want to sell software online. Instead of spending weeks wiring up payments, you copy (fork) a working project, change it, and launch. New to selling software? Start with <a href="#how">how it works</a> and the <a href="#glossary">glossary</a>.</p></div></section>
-<section id="kit" aria-labelledby="kith"><h2 id="kith">Flagship kit</h2><div class="grid">
-<div class="card"><span class="tag">Next.js 16 · Polar · Vercel</span><h3>Fork &amp; Ship Starter</h3>
-<p>A complete app that can take payments: <span class="tip" title="The page where a customer pays.">checkout</span>, <abbr title="Messages Polar sends your app when something happens, like an order being paid.">webhook</abbr> verification, an <abbr title="A record of what each customer has paid for and can access.">entitlement</abbr> store (Redis or Postgres), and a tested end-to-end flow. No lock-in and no AI API costs while it runs.</p>
-<div class="price">$39 <small class="small">one-time</small></div>
-<span class="btn" aria-disabled="true">Coming soon</span><a class="btn ghost" href="#details">Kit details</a>
-<p class="small">No checkout yet. Launch is coming soon (no email required).</p>
-<p class="small">When it launches, checkout will be handled by <strong>Polar Software, Inc.</strong>, our <abbr title="Merchant of record: the company that legally sells to the customer and handles tax, VAT, invoices and refunds.">merchant of record</abbr> and reseller.</p></div>
-<div class="card" id="details"><h3>Kit details: what you get</h3><p>• Full source code<br>• Checkout, webhook and success pages<br>• Purchase storage that sets itself up<br>• Step-by-step deploy guide and test checklist<br>• Commercial license for your own products</p><p class="small">Works with Polar's free sandbox, so you can test payments without real money.</p></div>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fork &amp; Ship: a starting template for apps that accept payments</title><meta name="description" content="A starting template for launching an app that accepts payments: source code plus instructions, with checkout and customer access already connected. Coming soon."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap"><a class="skip" href="#main">Skip to content</a><nav aria-label="Main"><a class="brand" href="/">Fork &amp; Ship</a><div class="links"><a href="/#walkthrough">See it work</a><a href="/#steps">Steps</a><a href="/#details">What $39 includes</a><a href="/#tools">Free tools</a><a href="/#developers">For developers</a></div></nav>
+<main id="main">
+<header class="hero" style="padding-top:9vh;padding-bottom:4vh">
+<span class="status">Coming soon: waiting on payment approval</span>
+<h1 style="margin-top:18px">A starting template for launching an app that accepts payments.</h1>
+<p class="lead">Customize it into your own product, with checkout and customer access already connected. You get <strong>source code plus setup instructions</strong>. It is not a finished business, a website builder or a done-for-you service.</p>
+<div class="quick" role="list">
+<div role="listitem"><b>What it is</b><span>Starter code for a web app that takes a payment and remembers who paid, such as a paid tool, download or members-only page.</span></div>
+<div role="listitem"><b>What you get</b><span>For $39 one-time (when sales open): access to the private code, setup docs and a license to sell your own products built with it.</span></div>
+<div role="listitem"><b>Who it's for</b><span>People building their first paid app who can edit code, or are willing to learn with an AI coding assistant.</span></div>
+<div role="listitem"><b>What you still build</b><span>Your actual product, sign-in, the pages buyers unlock, branding and launch.</span></div>
+</div>
+<a class="btn" href="#walkthrough">See how it works</a><a class="btn ghost" href="#tools">Try the free tools</a>
+</header>
+
+<section id="saves" aria-labelledby="savesh"><h2 id="savesh">The work it saves you</h2><div class="cols2">
+<div class="card"><h3>Already connected for you</h3><ul class="checks">
+<li>A <strong>Buy button</strong> that opens a secure checkout page hosted by Polar, the payment company.</li>
+<li>A thank-you page buyers return to after paying.</li>
+<li>A <strong>payment notification receiver</strong>: when Polar confirms a payment, the app checks the message is genuine and records that the buyer has access.</li>
+<li><strong>Refunds remove access</strong> automatically.</li>
+<li>Storage for those purchase records, using a free database from Neon or Upstash (a local file while you develop).</li>
+<li>A one-line check your pages can use: "has this email paid?"</li>
+</ul></div>
+<div class="card"><h3>What you still build and decide</h3><ul class="checks nots">
+<li>Your product itself: the tool, download, course or feature people pay for.</li>
+<li>How customers sign in (no login system is included).</li>
+<li>Which pages or features are unlocked, and what they look like.</li>
+<li>Your design, text, prices, terms and refund policy.</li>
+<li>Creating your accounts, testing and launching.</li>
+<li>Subscriptions: the kit handles <em>one-time</em> purchases only.</li>
+</ul></div>
 </div></section>
-<section id="tools" aria-labelledby="toolsh"><h2 id="toolsh">Free tools</h2><p class="lead">No sign-up and no analytics. Everything runs in your browser.</p><div class="grid">
-<div class="card"><h3>MoR Fee Calculator</h3><p>See how much of each sale you keep on Polar, Lemon Squeezy and Gumroad.</p><a class="btn ghost" href="/tools/mor-fee-calculator/">Open calculator</a></div>
-<div class="card"><h3>Webhook Signature Tester</h3><p>Check that a Polar webhook signature is valid before you go live.</p><a class="btn ghost" href="/tools/polar-webhook-tester/">Open tester</a></div>
+
+<section id="walkthrough" aria-labelledby="wth"><h2 id="wth">See it work: real screenshots</h2>
+<p class="lead">Taken on Oct 13, 2026 from the actual kit running on a computer in Polar's <em>sandbox</em>, a test mode where no real money moves. The kit's pages are deliberately plain so you can restyle them.</p>
+<h3>Your customer's side</h3>
+<div class="grid">
+<figure class="shot card"><img src="/assets/walkthrough/1-kit-pricing-page.webp" width="980" height="420" alt="The kit's plain starter pricing page with the headline 'Your SaaS, taking payments today.' and a black 'Buy: $39' button" loading="lazy"><figcaption><b>1. Your pricing page.</b> Placeholder text you replace. The Buy button starts checkout.</figcaption></figure>
+<figure class="shot card"><img src="/assets/walkthrough/2-polar-checkout.webp" width="1280" height="900" alt="Polar's sandbox checkout page showing 'Fork &amp; Ship Starter Kit (test)', $39, email and card fields, and a Pay now button" loading="lazy"><figcaption><b>2. Polar's checkout page.</b> Polar collects the card and tax details and appears as the seller. The yellow bar marks sandbox mode.</figcaption></figure>
+<figure class="shot card"><img src="/assets/walkthrough/3-success-page.webp" width="980" height="260" alt="The kit's thank-you page reading 'Thanks!' with an order reference" loading="lazy"><figcaption><b>3. Back on your site.</b> A thank-you page with the order reference. Behind the scenes the purchase is recorded, so your pages can unlock access.</figcaption></figure>
+</div>
+<h3 style="margin-top:28px">Your side, as the builder</h3>
+<div class="cols2">
+<div class="card"><p><b>You fill in a settings file.</b> These are your own accounts' values, kept out of your code (this is the kit's real template):</p>
+<pre class="code" tabindex="0" aria-label="Settings template">POLAR_ACCESS_TOKEN=        # from your Polar account
+POLAR_WEBHOOK_SECRET=      # from Polar's notification settings
+POLAR_ENVIRONMENT=sandbox  # switch to production when ready
+POLAR_SUCCESS_URL=https://your-site/success
+NEXT_PUBLIC_POLAR_PRODUCT_ID=   # the product you created in Polar
+DATABASE_URL=              # added for you when you connect Neon</pre></div>
+<div class="card"><p><b>What the app records after a payment</b> (from the test above, email shortened):</p>
+<pre class="code" tabindex="0" aria-label="Purchase record example">{ "email": "buyer@…",
+  "productId": "442dee7f-…",
+  "orderId": "aba67850-…",
+  "active": true }      ← after the refund: false</pre>
+<p class="small">Your own pages ask "does this email have an active purchase?" to decide what to show.</p></div>
+</div>
+</section>
+
+<section id="uses" aria-labelledby="usesh"><h2 id="usesh">What you could build with it</h2><p class="small"><span class="label-ill">Illustrative examples</span>: none of these products exist yet. Each shows what the kit covers and what you'd add.</p>
+<div class="grid">
+<div class="card"><h3>A paid template or file pack</h3><p><b>Included:</b> checkout, the purchase record, and access removed on refund.</p><p><b>You build:</b> sign-in and a downloads page that checks the purchase before showing files.</p></div>
+<div class="card"><h3>A one-time "lifetime access" web tool</h3><p><b>Included:</b> payment, the purchase record, and an access check.</p><p><b>You build:</b> the tool itself, sign-in, and the locked features. If it uses an AI service, you also pay for that service.</p></div>
+<div class="card"><h3>A paid guide or members-only page</h3><p><b>Included:</b> payment and a list of who paid.</p><p><b>You build:</b> the content, sign-in, and the protected pages.</p></div>
 </div></section>
-<section id="how" aria-labelledby="howh"><h2 id="howh">How selling software works</h2><div class="card"><ol class="steps">
-<li><p><strong>You build or fork a product.</strong> It could be an app, a template or a download.</p></li>
-<li><p><strong>A <abbr title="Merchant of record: the company that legally sells to the customer and handles tax, VAT, invoices and refunds.">merchant of record</abbr> sells it for you.</strong> Polar Software, Inc. takes the payment, charges the right sales tax or VAT in each country, sends the receipt and handles refunds. You don't need to register for tax in dozens of countries.</p></li>
-<li><p><strong>Polar tells your app with a webhook.</strong> Your app checks the signature so nobody can fake a payment.</p></li>
-<li><p><strong>Your app grants an entitlement.</strong> The customer gets access, a license or a download.</p></li>
-<li><p><strong>You get paid out.</strong> Polar sends you the money minus its fees. The <a href="/tools/mor-fee-calculator/">fee calculator</a> shows how much you keep.</p></li>
-</ol></div></section>
-<section id="glossary" aria-labelledby="gh"><h2 id="gh">Glossary</h2><div class="card"><dl class="gloss">
-<dt id="g-mor">MoR (merchant of record)</dt><dd>The company legally selling to the customer. It collects payment, handles tax/VAT, invoices, chargebacks and refunds. For Fork &amp; Ship that's Polar Software, Inc.</dd>
-<dt id="g-polar">Polar</dt><dd>A merchant-of-record platform for developers (polar.sh). It handles checkout, subscriptions, license keys and file downloads. It has a free sandbox for testing.</dd>
-<dt id="g-webhook">Webhook</dt><dd>An automatic HTTP message one service sends to another when something happens (e.g. "order paid"). It's signed with a secret so your app can check it's real.</dd>
-<dt id="g-ent">Entitlement</dt><dd>What a customer is allowed to access after paying, such as repo access, a download or a feature. Your app stores it so it remembers who paid.</dd>
-<dt id="g-sandbox">Sandbox</dt><dd>A test mode with fake money. Sandbox orders are never real revenue.</dd>
+
+<section id="steps" aria-labelledby="stepsh"><h2 id="stepsh">From purchase to launch, in plain English</h2>
+<div class="card"><ol class="steps">
+<li><p><strong>Get the template.</strong> After you buy, you get read access to the private code repository on GitHub (a free GitHub account is needed). You copy it to make your own.</p></li>
+<li><p><strong>Open it in a code editor</strong>, such as VS Code or Cursor. You'll also install Node.js (free) to run it on your computer.</p></li>
+<li><p><strong>Customize it.</strong> Change the text and design and add your product. <em>This is where coding is needed.</em> An AI coding assistant (in Cursor, Copilot, Claude Code and similar tools) can explain the code and make changes for you, but you still need to review what it changes and test it.</p></li>
+<li><p><strong>Connect your accounts:</strong> GitHub for the code, Vercel to host the site, Polar to take payments, and a database (Neon or Upstash) to store purchases. You create these yourself and paste their values into the settings shown above.</p></li>
+<li><p><strong>Test checkout and access</strong> in Polar's sandbox with a test card: buy, confirm access is granted, refund, confirm access is removed.</p></li>
+<li><p><strong>Publish.</strong> Switch Polar to live mode, review your prices, terms and refund policy, and put the site online.</p></li>
+</ol>
+<p class="small">This is <strong>not no-code</strong>. Comfort with a code editor, a terminal and copying settings helps. If that's new to you, budget time to learn it with an AI assistant, or get help from a developer.</p></div></section>
+
+<section id="details" aria-labelledby="detailsh"><h2 id="detailsh">What $39 includes</h2>
+<div class="card"><p><span class="status">Coming soon: waiting on payment approval</span></p>
+<div class="tablewrap"><table class="facts">
+<tr><th scope="row">Price</th><td>$39, one-time, Solo license. A Team license (up to five named developers in one organization) is defined in the license but not on sale yet.</td></tr>
+<tr><th scope="row">You receive</th><td>The full source code and setup instructions (README), delivered as read access to the private GitHub repository through Polar, plus the kit license.</td></tr>
+<tr><th scope="row">License</th><td>MIT-style with a no-resale clause. You may "use, copy, modify, merge, and publish" the kit and "distribute and sell <strong>end products</strong> built with the Kit". You may not "sell, sublicense, or redistribute the Kit, or a substantially similar derivative, as a template, starter kit, boilerplate, theme, or other developer product", and "publishing the Kit's source in a public repository is redistribution." "A Solo license covers one individual developer." It is provided "as is", without warranty.</td></tr>
+<tr><th scope="row">You'll need</th><td>A computer with a code editor and Node.js 20 or newer; free accounts with GitHub, Vercel, Polar and Neon or Upstash; and basic coding skills or an AI coding assistant.</td></tr>
+<tr><th scope="row">Ongoing costs (not paid to us)</th><td><strong>Polar:</strong> 5% + $0.50 per sale on its free Starter plan, +1.5% for non-US cards, plus payout fees (about $2 per month with a payout + 0.25% + $0.25 per payout). <strong>Vercel:</strong> the free Hobby plan has usage limits and is meant for personal, non-commercial use, so a site that sells may need Vercel Pro (paid) or another host. <strong>Neon / Upstash:</strong> free plans with storage and usage limits. Check each provider's current pricing.</td></tr>
+<tr><th scope="row">Support</th><td>Email <a href="mailto:steeleblueai@gmail.com">steeleblueai@gmail.com</a> with questions, license or refund requests. There are no promised response times or future updates.</td></tr>
+<tr><th scope="row">Who sells it</th><td>Orders will be processed by Polar Software, Inc., reseller and merchant of record (the seller on your receipt, handling payment and tax).</td></tr>
+</table></div>
+<p style="margin-top:14px"><b>What to do now:</b> <a href="#walkthrough">look through the walkthrough</a>, or try a free tool below. There's no checkout and no sign-up list yet.</p></div></section>
+
+<section id="tools" aria-labelledby="toolsh"><h2 id="toolsh">Free tools</h2><p class="lead">Free, no sign-up, no analytics. Both run in your web browser.</p><div class="grid">
+<div class="card"><h3>Compare payment platform fees</h3><p>For anyone pricing a digital product. See an estimate of what you'd receive per sale on Polar, Lemon Squeezy and Gumroad before you choose a platform or set a price.</p><a class="btn ghost" href="/tools/mor-fee-calculator/">Compare fees</a></div>
+<div class="card"><h3>Test a payment notification signature</h3><p>For developers connecting Polar. Use it when your app rejects Polar's payment notifications, to check whether the secret or message is the problem. Nothing you type is sent anywhere.</p><a class="btn ghost" href="/tools/polar-webhook-tester/">Test a signature</a></div>
+</div></section>
+
+<section id="evidence" aria-labelledby="evh"><h2 id="evh">What has been tested, and what hasn't</h2><div class="card">
+<ul class="checks">
+<li><b>Oct 12, 2026:</b> the code type-checks, lints and builds. The app accepts genuine payment notifications and rejects tampered ones. Asking for checkout creates a real Polar sandbox checkout.</li>
+<li><b>Oct 13, 2026 (12:03 AM MT):</b> a full sandbox purchase with Polar's test card, shown in the screenshots above: checkout completed and returned to the thank-you page. The paid-order notification was signed with the real order data and sent to the app on the same computer, and the purchase was recorded. The order was then refunded in Polar's sandbox, and access switched off.</li>
+</ul>
+<ul class="checks nots" style="margin-top:10px">
+<li>Not yet tested: Polar delivering notifications to a deployed copy over the internet (they were sent locally, because Polar can't reach a home computer), the Upstash Redis storage option, live payments, and GitHub access delivery to real buyers.</li>
+</ul></div></section>
+
+<section id="developers" aria-labelledby="devh"><h2 id="devh">For developers</h2><div class="card">
+<ul>
+<li><b>Stack:</b> Next.js 16 (App Router, TypeScript), React 19, <code>@polar-sh/nextjs</code>. Deploys to Vercel.</li>
+<li><b>Checkout:</b> <code>GET /api/checkout?products=&lt;id&gt;</code> redirects to a Polar checkout session. Polar API errors return a JSON 502.</li>
+<li><b>Webhooks</b> (the "payment notifications" above): <code>POST /api/webhook/polar</code>, verified with Standard Webhooks or legacy Polar HMAC secrets. A bad signature gets a 403. Handles <code>order.paid</code> (grant) and <code>order.refunded</code> (revoke).</li>
+<li><b>Entitlements</b> (purchase records): <code>grant()</code>, <code>revoke()</code>, <code>hasAccess(email, productId?)</code>. The backend is picked automatically: Upstash Redis, Neon Postgres, or a local JSON file (dev only, refused on Vercel).</li>
+<li><b>Not included:</b> auth, gated UI, subscription events, emails, admin dashboard.</li>
+<li><b>Audit:</b> <code>npm audit --omit=dev</code> reports 0 vulnerabilities. Dev-only lint tooling has known advisories with no upstream fix yet.</li>
+</ul></div></section>
+
+<section id="glossary" aria-labelledby="gh"><h2 id="gh">Glossary (optional)</h2><div class="card"><dl class="gloss">
+<dt id="g-mor">Merchant of record (MoR)</dt><dd>The company that legally sells to your customer, collects payment, handles sales tax/VAT, invoices and refunds. For this kit that's Polar Software, Inc.</dd>
+<dt id="g-polar">Polar</dt><dd>A payments company for software creators (polar.sh) that acts as merchant of record. It has a free sandbox for testing.</dd>
+<dt id="g-webhook">Webhook (payment notification)</dt><dd>An automatic message Polar sends your app, for example "order paid". It's signed with a secret so your app can tell it's genuine.</dd>
+<dt id="g-ent">Entitlement (purchase record)</dt><dd>A saved record that a customer paid and should have access.</dd>
+<dt id="g-sandbox">Sandbox</dt><dd>Test mode with fake money. Sandbox orders are never real revenue.</dd>
+<dt id="g-repo">Repository (repo)</dt><dd>A folder of code stored on GitHub, with its history.</dd>
 </dl></div></section>
 </main>
-<footer><p>Fork &amp; Ship by Bradley Steele Blue. Products are sold by our reseller <strong>Polar Software, Inc.</strong> (merchant of record), which handles payments, sales tax/VAT and billing support. Free tools are MIT-licensed. No tracking, analytics or cookies. <a href="/#glossary">Glossary</a> · <a href="/">Home</a></p></footer></div></body></html>
+<footer><p>Fork &amp; Ship is run by Bradley Steele Blue. When sales open, orders will be processed by <strong>Polar Software, Inc.</strong>, which acts as reseller and merchant of record: it is the seller on your receipt and handles payment, sales tax/VAT and invoices. Questions: <a href="mailto:steeleblueai@gmail.com">steeleblueai@gmail.com</a>. This site uses no analytics, tracking or cookies. Free tools are MIT-licensed. <a href="/#glossary">Glossary</a> · <a href="/">Home</a></p></footer></div></body></html>

@@ -1,29 +1,35 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Webhook Signature Tester (Standard Webhooks / Polar) | Fork &amp; Ship</title><meta name="description" content="Free, local tool to verify Polar webhook signatures."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap"><nav aria-label="Main"><a class="brand" href="/">Fork &amp; Ship</a><div class="links"><a href="/#kit">Kit</a><a href="/#tools">Free tools</a><a href="/#how">How it works</a><a href="/#glossary">Glossary</a></div></nav>
-<main class="narrow">
-<header class="hero sm"><span class="tag">Free tool · nothing leaves your browser</span><h1>Webhook signature tester</h1></header>
-<div class="card intro"><h2>What is this?</h2><p>When someone pays, Polar sends your app a <a href="/#g-webhook">webhook</a>: a message signed with a secret. Your app must check the signature so nobody can fake a payment. Paste a webhook here to see the signature you should expect and whether it matches. It runs locally and nothing is uploaded. For safety, use a sandbox or test secret.</p></div>
-<section><div class="card">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Test a payment notification signature | Fork &amp; Ship</title><meta name="description" content="Free in-browser check for Polar webhook signatures. No network requests."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap"><a class="skip" href="#main">Skip to content</a><nav aria-label="Main"><a class="brand" href="/">Fork &amp; Ship</a><div class="links"><a href="/#walkthrough">See it work</a><a href="/#steps">Steps</a><a href="/#details">What $39 includes</a><a href="/#tools">Free tools</a><a href="/#developers">For developers</a></div></nav>
+<main id="main" class="narrow">
+<header class="hero sm"><span class="tag">Free tool · nothing you type leaves your browser</span><h1>Test a payment notification signature</h1></header>
+<div class="card intro"><h2>What is this?</h2><p>When someone pays, Polar sends your app an automatic message (a <a href="/#g-webhook">webhook</a>) signed with a secret, so your app can tell it's genuine. <b>Who it's for:</b> developers connecting Polar to an app. <b>When you'd use it:</b> your app keeps rejecting Polar's notifications and you want to know if the secret, timestamp or message body is the problem. The check happens entirely in this page using your browser's built-in cryptography, with no network requests. Even so, prefer a sandbox or test secret.</p></div>
+<section aria-labelledby="th"><div class="card"><h2 id="th" style="font-size:1.2rem">Notification details</h2>
+<button class="btn ghost" id="sample" type="button" style="margin:0 0 14px">Try with sample data</button>
 <label for="sec">Secret (the <code>whsec_…</code> value from Polar, pasted as-is)</label><input id="sec" class="mono" autocomplete="off" spellcheck="false">
 <div class="fields"><div><label for="wid">webhook-id header</label><input id="wid" class="mono" value="msg_test"></div>
-<div><label for="ts">webhook-timestamp header (unix seconds)</label><input id="ts" class="mono"></div></div>
-<label for="body">Raw request body (exactly as received)</label><textarea id="body" rows="6">{"type":"order.paid","data":{"id":"ord_123"}}</textarea>
+<div><label for="ts">webhook-timestamp header (unix seconds)</label><input id="ts" class="mono" inputmode="numeric"></div></div>
+<label for="body">Raw message body (exactly as received)</label><textarea id="body" rows="6">{"type":"order.paid","data":{"id":"ord_123"}}</textarea>
 <label for="got">Received webhook-signature header (optional)</label><input id="got" class="mono" placeholder="v1,...">
-<button class="btn" id="go" type="button">Compute signature</button>
-<div aria-live="polite"><p class="small" style="margin-top:16px">Expected signatures:</p><div class="out mono" id="exp">—</div><p id="res"></p></div>
+<button class="btn" id="go" type="button">Check signature</button>
+<div aria-live="polite"><p class="small" style="margin-top:16px">Expected signatures:</p><div class="out mono" id="exp" style="white-space:pre-wrap">—</div><p id="res"></p></div>
 </div></section>
-<section><div class="card"><h3>Skip the wiring</h3><p>The Fork &amp; Ship Starter already verifies Polar webhooks, with both schemes tested.</p><a class="btn" href="/#kit">Get the kit (coming soon)</a><a class="btn ghost" href="/#glossary">Glossary</a></div></section>
+<section><div class="card"><h3>Next</h3><p>The Fork &amp; Ship template already checks Polar's notifications for you.</p><a class="btn" href="/#walkthrough">See the template</a><a class="btn ghost" href="/#glossary">Glossary</a></div></section>
 </main>
 <script>
 const $=id=>document.getElementById(id);$("ts").value=Math.floor(Date.now()/1000);
 const b64=buf=>btoa(String.fromCharCode(...new Uint8Array(buf)));
 const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 async function sign(k,msg){const key=await crypto.subtle.importKey("raw",k,{name:"HMAC",hash:"SHA-256"},false,["sign"]);return "v1,"+b64(await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(msg)));}
-// Polar: secrets created on/after 2026-09-08 use Standard Webhooks (key = base64-decoded part after whsec_); older ones use Polar HMAC (key = UTF-8 of full string).
-$("go").onclick=async()=>{const s=$("sec").value.trim(),msg=`${$("wid").value}.${$("ts").value}.${$("body").value}`;
+// Polar: secrets created on/after 2026-09-08 use Standard Webhooks (key = base64-decoded part after whsec_); older ones use Polar HMAC (key = UTF-8 bytes of the full string).
+async function check(){const s=$("sec").value.trim(),msg=`${$("wid").value}.${$("ts").value}.${$("body").value}`;
+if(!s){$("exp").textContent="Enter a secret first (or use the sample data).";$("res").textContent="";return}
 let std=null;try{std=await sign(unb64(s.replace(/^whsec_/,"")),msg)}catch(e){}
 const legacy=await sign(new TextEncoder().encode(s),msg);
-$("exp").textContent=`Standard Webhooks (new secrets): ${std??"n/a (secret isn't valid base64)"}\nPolar HMAC (pre-2026-09-08 secrets): ${legacy}`;$("exp").style.whiteSpace="pre-wrap";
+$("exp").textContent=`Standard Webhooks (newer secrets): ${std??"n/a (secret isn't valid base64)"}\nPolar HMAC (secrets before 2026-09-08): ${legacy}`;
 const got=$("got").value.trim().split(" ").filter(Boolean);
-$("res").textContent=got.length?(got.includes(std)?"✅ Matches the Standard Webhooks scheme":got.includes(legacy)?"✅ Matches the legacy Polar HMAC scheme":"❌ No match. Check the secret, the exact raw body (not re-serialized), the id and the timestamp."):"";};
+$("res").textContent=got.length?(got.includes(std)?"✅ Match: Standard Webhooks scheme":got.includes(legacy)?"✅ Match: legacy Polar HMAC scheme":"❌ No match. Check the secret, the exact raw body (not re-formatted), the id and the timestamp."):"Paste the received signature above to compare.";}
+$("go").onclick=check;
+$("sample").onclick=async()=>{const fake="whsec_"+btoa("fork-and-ship-sample-secret-NOT-REAL");$("sec").value=fake;$("wid").value="msg_sample_001";$("ts").value="1791900000";
+$("body").value='{"type":"order.paid","data":{"id":"ord_sample_123","customer":{"email":"buyer@example.com"},"total_amount":3900}}';
+$("got").value=await sign(unb64(fake.slice(6)),`msg_sample_001.1791900000.${$("body").value}`);await check();};
 </script>
-<footer><p>Fork &amp; Ship by Bradley Steele Blue. Products are sold by our reseller <strong>Polar Software, Inc.</strong> (merchant of record), which handles payments, sales tax/VAT and billing support. Free tools are MIT-licensed. No tracking, analytics or cookies. <a href="/#glossary">Glossary</a> · <a href="/">Home</a></p></footer></div></body></html>
+<footer><p>Fork &amp; Ship is run by Bradley Steele Blue. When sales open, orders will be processed by <strong>Polar Software, Inc.</strong>, which acts as reseller and merchant of record: it is the seller on your receipt and handles payment, sales tax/VAT and invoices. Questions: <a href="mailto:steeleblueai@gmail.com">steeleblueai@gmail.com</a>. This site uses no analytics, tracking or cookies. Free tools are MIT-licensed. <a href="/#glossary">Glossary</a> · <a href="/">Home</a></p></footer></div></body></html>

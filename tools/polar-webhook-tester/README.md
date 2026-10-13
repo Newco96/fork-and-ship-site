@@ -1,4 +1,4 @@
-# Free tool 2: Webhook Signature Tester (Standard Webhooks / Polar)
+# Test a payment notification signature
 
 **Positioning:** Paste a webhook secret, payload, `webhook-id`, and `webhook-timestamp`, and get back the expected `webhook-signature`, or check one you received. Debug the "bad signature" error without logging secrets anywhere. It runs 100% in the browser via WebCrypto, and nothing is sent to a server.
 **Audience:** developers wiring up Polar (or any Standard Webhooks provider), which is exactly who buys Product 1.
