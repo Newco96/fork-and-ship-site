@@ -1,0 +1,17 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MoR Fee Calculator: Polar vs Lemon Squeezy vs Gumroad</title>
+<style>body{font-family:system-ui;max-width:680px;margin:40px auto;padding:0 16px}input{width:100px}table{border-collapse:collapse;width:100%;margin-top:16px}td,th{border-bottom:1px solid #ddd;padding:8px;text-align:right}td:first-child,th:first-child{text-align:left}.cta{margin-top:24px;padding:16px;background:#f4f4f4;border-radius:8px}</style></head>
+<body><h1>What will you actually take home?</h1>
+<label>Price $ <input id="price" type="number" value="39" min="0" step="1"></label>
+<label>Sales / month <input id="units" type="number" value="20" min="0"></label>
+<label>International % <input id="intl" type="number" value="40" min="0" max="100"></label>
+<table><thead><tr><th>Platform</th><th>Fee / sale</th><th>Net / sale</th><th>Net / month</th></tr></thead><tbody id="out"></tbody></table>
+<p style="font-size:12px;color:#666">Fee assumptions as of Sep 2026; verify on each platform. Not financial advice.</p>
+<div class="cta">Selling a SaaS? <a href="#starter-kit">Get the Polar + Next.js Starter Kit →</a><br>Track it all: <a href="#sheets">Indie Launch & P&L Sheets →</a></div>
+<script>
+const P=[{n:"Polar",pct:.05,fix:.5,intl:.015},{n:"Lemon Squeezy",pct:.05,fix:.5,intl:0},{n:"Gumroad",pct:.129,fix:.8,intl:0}];
+const $=id=>document.getElementById(id), f=x=>"$"+x.toFixed(2);
+function calc(){const p=+$("price").value||0,u=+$("units").value||0,i=(+$("intl").value||0)/100;
+$("out").innerHTML=P.map(o=>{const fee=p*o.pct+o.fix+p*i*o.intl,net=Math.max(p-fee,0);return`<tr><td>${o.n}</td><td>${f(fee)}</td><td>${f(net)}</td><td>${f(net*u)}</td></tr>`}).join("")}
+document.querySelectorAll("input").forEach(e=>e.addEventListener("input",calc));calc();
+</script></body></html>
