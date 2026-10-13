@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MoR Fee Calculator: Polar vs Lemon Squeezy vs Gumroad | Fork &amp; Ship</title><meta name="description" content="Free calculator: what you take home per sale after merchant-of-record fees."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MoR Fee Calculator: Polar vs Lemon Squeezy vs Gumroad | Fork &amp; Ship</title><meta name="description" content="Free calculator: what you take home per sale after merchant-of-record fees."><link rel="stylesheet" href="/assets/style.css"></head><body><div class="bg" aria-hidden="true"></div><div class="wrap"><nav aria-label="Main"><a class="brand" href="/">Fork &amp; Ship</a><div class="links"><a href="/#kit">Kit</a><a href="/#tools">Free tools</a><a href="/#how">How it works</a><a href="/#glossary">Glossary</a></div></nav>
 <main class="narrow">
 <header class="hero sm"><span class="tag">Free tool · runs in your browser</span><h1>What will you actually take home?</h1></header>
 <div class="card intro"><h2>What is this?</h2><p>When you sell through a <a href="/#g-mor">merchant of record</a> like Polar, they take a fee on every sale for handling payment and tax. Enter your price and expected sales to see what you keep on each platform.</p></div>
@@ -21,4 +21,4 @@ const r=P.map(o=>{const fee=p>0?p*o.pct+o.fix+p*i*o.intl:0;return{...o,fee,net:M
 $("out").innerHTML=r.map(o=>`<tr><td${o.net===best&&p>0?' class="best"':''}>${o.n}</td><td>${f(o.fee)}</td><td>${f(o.net)}</td><td>${f(o.net*u)}</td></tr>`).join("")}
 document.querySelectorAll("input").forEach(e=>e.addEventListener("input",calc));calc();
 </script>
-</div></body></html>
+<footer><p>Fork &amp; Ship by Bradley Steele Blue. Products are sold by our reseller <strong>Polar Software, Inc.</strong> (merchant of record), which handles payments, sales tax/VAT and billing support. Free tools are MIT-licensed. No tracking, analytics or cookies. <a href="/#glossary">Glossary</a> · <a href="/">Home</a></p></footer></div></body></html>
